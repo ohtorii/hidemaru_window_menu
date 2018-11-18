@@ -15,9 +15,7 @@ endmacro;
 Initialize:
 	#num=0;
 
-	//-------------------------------------------------
-	//	TABウインドウ
-	//-------------------------------------------------
+	
 	{
 	/*	$root[#num]="New";
 		$label[#num]="New";
@@ -25,9 +23,7 @@ Initialize:
 		$root[#num]="Open";
 		$label[#num]="Open";
 		#num=#num+1;*/
-		$root[#num]="Q)このタブを閉じる";
-		$label[#num]="Quit";
-		#num=#num+1;
+	
 		/*$root[#num]="Write";
 		$label[#num]="Write";
 		#num=#num+1;
@@ -35,71 +31,17 @@ Initialize:
 		$label[#num]="WriteClose";
 		#num=#num+1;
 	*/
-		$root[#num]="\x01";
-		$label[#num]="";
-		#num=#num+1;
 	}
-
-	$root[#num]="[Tab]このタブ以外を閉じる";
-	$label[#num]="";
-	#num=#num+1;
-	$root[#num]="[Tab]左のタブをすべて閉じる";
-	$label[#num]="";
-	#num=#num+1;
-	$root[#num]="[Tab]右のタブをすべて閉じる";
-	$label[#num]="";
-	#num=#num+1;
-
-	$root[#num]="\x01";
-	$label[#num]="";
-	#num=#num+1;
-
-	//-------------------------------------------------
-	//	分離
-	//-------------------------------------------------
-	$root[#num]="このタブを分離/移動";
-	$label[#num]="TabSeparationMove";
-	#num=#num+1;
-	$root[#num]="このタブを分離";
-	$label[#num]="TabSeparation";
-	#num=#num+1;
-	$root[#num]="タブをプロジェクトフォルダ毎に分離";
-	$label[#num]="";
-	#num=#num+1;
-
-
-	//-------------------------------------------------
-	//	並び替え
-	//-------------------------------------------------
-	$root[#num]="M)タブを左右に移動";
-	$label[#num]="MoveTabBoth";
-	#num=#num+1;
-	/*$root[#num]="R)タブを右に移動";
-	$label[#num]="MoveTabRight";
-	#num=#num+1;
-	$root[#num]="L)タブを左に移動";
-	$label[#num]="MoveTabLeft";
-	#num=#num+1;*/
-	$root[#num]="F)タブをファイル名で並び替える";
-	$label[#num]="TabSortFilename";
-	#num=#num+1;
-	$root[#num]="E)タブをファイル拡張子で並び替える";
-	$label[#num]="TabSortExtension";
-	#num=#num+1;
-	$root[#num]="\x01";
-	$label[#num]="";
-	#num=#num+1;
-
-	//-------------------------------------------------
+//-------------------------------------------------
 	//	移動
 	//-------------------------------------------------
-	$root[#num]=")左右のタブに移動";
+	$root[#num]="I)タブに移動";
 	$label[#num]="ForcusTab";
 	#num=#num+1;
-	$root[#num]="L)左のタブに移動";
+	$root[#num]="H)左のタブに移動";
 	$label[#num]="MoveLeftTab";
 	#num=#num+1;
-	$root[#num]="R)右のタブに移動";
+	$root[#num]="L)右のタブに移動";
 	$label[#num]="MoveRightTab";
 	#num=#num+1;
 
@@ -109,11 +51,11 @@ Initialize:
 	//-------------------------------------------------
 	//	フォーカス
 	//-------------------------------------------------
-	$root[#num]="S)分割方向の切り替え";
+	/*$root[#num]="S)分割方向の切り替え";
 	$label[#num]="Split";
-	#num=#num+1;
+	#num=#num+1;*/
 	
-	$root[#num]="H)水平分割";
+	$root[#num]="S)水平分割";
 	$label[#num]="SplitHorizontal";
 	#num=#num+1;
 	
@@ -131,6 +73,75 @@ Initialize:
 
 	$root[#num]="\x01";
 	#num=#num+1;
+	
+	
+
+	//-------------------------------------------------
+	//	分離
+	//-------------------------------------------------
+	$root[#num]="D)このタブを分離/移動";
+	$label[#num]="DetachOrMoveTab";
+	#num=#num+1;
+	$root[#num]="このタブを分離";
+	$label[#num]="DetachTab";
+	#num=#num+1;
+	$root[#num]="タブをプロジェクトフォルダ毎にまとめる";
+	$label[#num]="";
+	#num=#num+1;
+	$root[#num]="タブをフォルダ毎にまとめる";
+	$label[#num]="";
+	#num=#num+1;
+
+	$root[#num]="\x01";
+	$label[#num]="";
+	#num=#num+1;
+	//-------------------------------------------------
+	//	並び替え
+	//-------------------------------------------------
+	$root[#num]="O)タブを移動";
+	$label[#num]="MoveTabBoth";
+	#num=#num+1;
+	$root[#num]="K)タブを右に移動";
+	$label[#num]="MoveTabRight";
+	#num=#num+1;
+	$root[#num]="J)タブを左に移動";
+	$label[#num]="MoveTabLeft";
+	#num=#num+1;
+	$root[#num]="F)タブをファイル名で並び替える";
+	$label[#num]="TabSortFilename";
+	#num=#num+1;
+	$root[#num]="E)タブをファイル拡張子で並び替える";
+	$label[#num]="TabSortExtension";
+	#num=#num+1;
+	
+	$root[#num]="\x01";
+	$label[#num]="";
+	#num=#num+1;
+
+	//-------------------------------------------------
+	//	閉じる
+	//-------------------------------------------------
+	$root[#num]="[Tab]このタブ以外を閉じる";
+	$label[#num]="";
+	#num=#num+1;
+	$root[#num]="[Tab]左のタブをすべて閉じる";
+	$label[#num]="";
+	#num=#num+1;
+	$root[#num]="[Tab]右のタブをすべて閉じる";
+	$label[#num]="";
+	#num=#num+1;
+
+	$root[#num]="\x01";
+	$label[#num]="";
+	#num=#num+1;
+	
+	$root[#num]="G)Grepを閉じる";
+	$label[#num]="CloseGrep";
+	#num=#num+1;
+	$root[#num]="Q)このタブを閉じる";
+	$label[#num]="Quit";
+	#num=#num+1;
+	
 	return ;
 
 Main:
@@ -157,6 +168,10 @@ Open:
 Quit:
 	closenew;
 	return;
+
+CloseGrep:
+	execmacro macrodir+"\\CloseGrepWin.mac";
+	return;
 	
 Write:
 	save;
@@ -167,11 +182,11 @@ WriteClose:
 	return;
 	
 	
-TabSeparationMove:
+DetachOrMoveTab:
 	settabgroup;
 	return ;
 
-TabSeparation:
+DetachTab:
 	settabgroup;
 	return ;
 

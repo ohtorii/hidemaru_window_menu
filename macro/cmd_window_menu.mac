@@ -1,0 +1,321 @@
+﻿/*秀丸エディタのウインドウ系メニュー
+
+	
+
+*/
+
+#K_SHIFT	= 0x10;
+
+
+call Initialize;
+call Main;
+endmacro;
+
+
+Initialize:
+	#num=0;
+
+	//-------------------------------------------------
+	//	TABウインドウ
+	//-------------------------------------------------
+	{
+	/*	$root[#num]="New";
+		$label[#num]="New";
+		#num=#num+1;
+		$root[#num]="Open";
+		$label[#num]="Open";
+		#num=#num+1;*/
+		$root[#num]="Q)このタブを閉じる";
+		$label[#num]="Quit";
+		#num=#num+1;
+		/*$root[#num]="Write";
+		$label[#num]="Write";
+		#num=#num+1;
+		$root[#num]="Write Close";
+		$label[#num]="WriteClose";
+		#num=#num+1;
+	*/
+		$root[#num]="\x01";
+		$label[#num]="";
+		#num=#num+1;
+	}
+
+	$root[#num]="[Tab]このタブ以外を閉じる";
+	$label[#num]="";
+	#num=#num+1;
+	$root[#num]="[Tab]左のタブをすべて閉じる";
+	$label[#num]="";
+	#num=#num+1;
+	$root[#num]="[Tab]右のタブをすべて閉じる";
+	$label[#num]="";
+	#num=#num+1;
+
+	$root[#num]="\x01";
+	$label[#num]="";
+	#num=#num+1;
+
+	//-------------------------------------------------
+	//	分離
+	//-------------------------------------------------
+	$root[#num]="このタブを分離/移動";
+	$label[#num]="TabSeparationMove";
+	#num=#num+1;
+	$root[#num]="このタブを分離";
+	$label[#num]="TabSeparation";
+	#num=#num+1;
+	$root[#num]="タブをプロジェクトフォルダ毎に分離";
+	$label[#num]="";
+	#num=#num+1;
+
+
+	//-------------------------------------------------
+	//	並び替え
+	//-------------------------------------------------
+	$root[#num]="M)タブを左右に移動";
+	$label[#num]="MoveTabBoth";
+	#num=#num+1;
+	/*$root[#num]="R)タブを右に移動";
+	$label[#num]="MoveTabRight";
+	#num=#num+1;
+	$root[#num]="L)タブを左に移動";
+	$label[#num]="MoveTabLeft";
+	#num=#num+1;*/
+	$root[#num]="F)タブをファイル名で並び替える";
+	$label[#num]="TabSortFilename";
+	#num=#num+1;
+	$root[#num]="E)タブをファイル拡張子で並び替える";
+	$label[#num]="TabSortExtension";
+	#num=#num+1;
+	$root[#num]="\x01";
+	$label[#num]="";
+	#num=#num+1;
+
+	//-------------------------------------------------
+	//	移動
+	//-------------------------------------------------
+	$root[#num]=")左右のタブに移動";
+	$label[#num]="ForcusTab";
+	#num=#num+1;
+	$root[#num]="L)左のタブに移動";
+	$label[#num]="MoveLeftTab";
+	#num=#num+1;
+	$root[#num]="R)右のタブに移動";
+	$label[#num]="MoveRightTab";
+	#num=#num+1;
+
+	$root[#num]="\x01";
+	#num=#num+1;
+
+	//-------------------------------------------------
+	//	フォーカス
+	//-------------------------------------------------
+	$root[#num]="S)分割方向の切り替え";
+	$label[#num]="Split";
+	#num=#num+1;
+	
+	$root[#num]="H)水平分割";
+	$label[#num]="SplitHorizontal";
+	#num=#num+1;
+	
+	$root[#num]="V)垂直分割";
+	$label[#num]="SplitVertical";
+	#num=#num+1;
+	
+	$root[#num]="W)分割ウインドウ切り替え";
+	$label[#num]="SplitSwitch";
+	#num=#num+1;
+	
+	$root[#num]="C)分割ウインドウクローズ";
+	$label[#num]="SplitClose";
+	#num=#num+1;
+
+	$root[#num]="\x01";
+	#num=#num+1;
+	return ;
+
+Main:
+	menuarray $root,#num;
+	if(result==0){
+		return;
+	}
+	##index=result-1;
+	$$name=$label[##index];
+	if ($$name==""){
+		return ;
+	}
+	call $$name;
+	return ;
+
+New:
+	newfile;
+	return;
+
+Open:
+	openfile "*.*";
+	return;
+
+Quit:
+	closenew;
+	return;
+	
+Write:
+	save;
+	return;	
+
+WriteClose:
+	saveexit;
+	return;
+	
+	
+TabSeparationMove:
+	settabgroup;
+	return ;
+
+TabSeparation:
+	settabgroup;
+	return ;
+
+MoveTabRight:
+	execmacro macrodir+"\\scripts\\settaborder_right.mac";
+	return ;
+
+MoveTabLeft:
+	execmacro macrodir+"\\scripts\\settaborder_left.mac";
+	return ;
+
+MoveTabBoth:
+	title "[Mode]タブの移動(Left/Right/H/L)";
+	while(1){
+		##in=inputchar("");
+		if ((##in == 0x1C) || (##in==ascii("h"))){
+			execmacro macrodir+"\\scripts\\settaborder_left.mac";
+			continue;
+		}
+		if ((##in == 0x1E) || (##in==ascii("l"))){
+			execmacro macrodir+"\\scripts\\settaborder_right.mac";
+			continue;
+		}
+		break;
+	}
+	return;
+
+TabSortFilename:
+	execmacro macrodir+"\\scripts\\cmd_sort_tab_filename.mac";
+	return;
+	
+TabSortExtension:
+	execmacro macrodir+"\\scripts\\cmd_sort_tab_ext.mac";
+	return;
+
+ForcusTab:
+	title "[Mode]タブの移動(Left/Right/H/L)";
+	while(1){
+		##in=inputchar("");
+		if ((##in == 0x1C) || (##in==ascii("h"))){
+			prevtab;
+			continue;
+		}
+		if ((##in == 0x1E) || (##in==ascii("l"))){
+			nexttab;
+			continue;
+		}
+		break;
+	}
+	return;
+	
+MoveRightTab:
+	nexttab;
+	return;
+	
+MoveLeftTab:
+	prevtab
+	return;
+
+Split:
+	title "[Mode]分割方向の切り替え(S)";
+	if(iskeydown(#K_SHIFT)){
+		call SwitchWindowSplitReverse;
+	}else{
+		call SwitchWindowSplit;
+	}
+	while(1){
+		##in=inputchar("");
+		if(##in==ascii("s")){
+			call SwitchWindowSplit;
+			continue;
+		}
+		if(##in==ascii("S")){
+			call SwitchWindowSplitReverse;
+			continue;
+		}
+		break;
+	}
+	return;
+	
+SplitHorizontal:
+	split 1,1;
+	return;
+
+SplitVertical:
+	split 2,1;
+	return;
+
+SplitClose:
+	if(splitmode==0){
+		//分割無し
+		return;
+	}
+	split 0,0;
+	return;
+	
+SwitchWindowSplit:
+	if(splitmode==0){
+		//分割無し→上下分割
+		split 1;
+		return;
+	}
+	if(splitmode==1){
+		//上下分割→左右分割
+		split 2;
+		return;
+	}
+	if(splitmode==2){
+		//左右分割→分割無し
+		split 2;
+		return;
+	}
+	if(splitmode==3){
+		//V7.xx以前の旧式の分割
+		//どの様な分割方法なのか分からないのでとりあえず無視する。
+		return;
+	}
+	return;
+
+
+SwitchWindowSplitReverse:
+	if(splitmode==0){
+		//分割無し→左右分割
+		split 2;
+		return;
+	}
+	if(splitmode==1){
+		//上下分割→分割なし
+		split 1;
+		return;
+	}
+	if(splitmode==2){
+		//左右分割→上下分割
+		split 1;
+		return;
+	}
+	if(splitmode==3){
+		//V7.xx以前の旧式の分割
+		//どの様な分割方法なのか分からないのでとりあえず無視する。
+		return;
+	}
+	return;
+	
+	
+SplitSwitch:
+	splitswitch;
+	return;

@@ -1,7 +1,10 @@
 ﻿/*秀丸エディタのウインドウ系メニュー
 
-	
 
+# 連絡先
+https://github.com/ohtorii/everything	<br>
+http://d.hatena.ne.jp/ohtorii/			<br>
+https://twitter.com/ohtorii				<br>
 */
 
 #K_SHIFT	= 0x10;
@@ -166,7 +169,7 @@ Open:
 	return;
 
 Quit:
-	closenew;
+	exit;
 	return;
 
 CloseGrep:

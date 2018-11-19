@@ -88,11 +88,17 @@ Initialize:
 	$root[#num]="このタブを分離";
 	$label[#num]="DetachTab";
 	#num=#num+1;
-	$root[#num]="タブをプロジェクトフォルダ毎にまとめる";
-	$label[#num]="";
+	$root[#num]="//タブをプロジェクトフォルダ毎にまとめる";
+	$label[#num]="GroupingProject";
 	#num=#num+1;
 	$root[#num]="タブをフォルダ毎にまとめる";
-	$label[#num]="";
+	$label[#num]="GroupingFolder";
+	#num=#num+1;
+	$root[#num]="タブをファイル名毎にまとめる";
+	$label[#num]="GroupingBasename";
+	#num=#num+1;
+	$root[#num]="タブを拡張子毎にまとめる";
+	$label[#num]="GroupingExtension";
 	#num=#num+1;
 
 	$root[#num]="\x01";
@@ -127,10 +133,10 @@ Initialize:
 	$root[#num]="このタブ以外を閉じる";
 	$label[#num]="CloseOtherTab";
 	#num=#num+1;
-	$root[#num]="[Tab]左のタブをすべて閉じる";
+	$root[#num]="左のタブをすべて閉じる";
 	$label[#num]="CloseLeftTabAll";
 	#num=#num+1;
-	$root[#num]="[Tab]右のタブをすべて閉じる";
+	$root[#num]="右のタブをすべて閉じる";
 	$label[#num]="CloseRightTabAll";
 	#num=#num+1;
 
@@ -173,7 +179,7 @@ Quit:
 	return;
 
 CloseGrep:
-	execmacro macrodir+"\\CloseGrepWin.mac";
+	execmacro currentmacrodirectory+"\\CloseGrepWin.mac";
 	return;
 	
 Write:
@@ -245,12 +251,27 @@ DetachTab:
 	settabgroup;
 	return ;
 
+GroupingProject:
+	return ;
+
+GroupingFolder:
+	execmacro currentmacrodirectory+"\\grouping_tab_folder.mac";
+	return;
+
+GroupingBasename:
+	execmacro currentmacrodirectory+"\\grouping_tab_basename.mac";
+	return;
+	
+GroupingExtension:
+	execmacro currentmacrodirectory+"\\grouping_tab_extension.mac";
+	return;
+	
 MoveTabRight:
-	execmacro macrodir+"\\scripts\\settaborder_right.mac";
+	execmacro currentmacrodirectory+"\\settaborder_right.mac";
 	return ;
 
 MoveTabLeft:
-	execmacro macrodir+"\\scripts\\settaborder_left.mac";
+	execmacro currentmacrodirectory+"\\settaborder_left.mac";
 	return ;
 
 MoveTabBoth:
@@ -258,11 +279,11 @@ MoveTabBoth:
 	while(1){
 		##in=inputchar("");
 		if ((##in == 0x1C) || (##in==ascii("h"))){
-			execmacro macrodir+"\\scripts\\settaborder_left.mac";
+			execmacro currentmacrodirectory+"\\settaborder_left.mac";
 			continue;
 		}
 		if ((##in == 0x1E) || (##in==ascii("l"))){
-			execmacro macrodir+"\\scripts\\settaborder_right.mac";
+			execmacro currentmacrodirectory+"\\settaborder_right.mac";
 			continue;
 		}
 		break;
@@ -270,11 +291,11 @@ MoveTabBoth:
 	return;
 
 TabSortFilename:
-	execmacro macrodir+"\\scripts\\cmd_sort_tab_filename.mac";
+	execmacro currentmacrodirectory+"\\cmd_sort_tab_filename.mac";
 	return;
 	
 TabSortExtension:
-	execmacro macrodir+"\\scripts\\cmd_sort_tab_ext.mac";
+	execmacro currentmacrodirectory+"\\cmd_sort_tab_ext.mac";
 	return;
 
 ForcusTab:

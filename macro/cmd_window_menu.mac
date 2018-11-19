@@ -121,14 +121,14 @@ Initialize:
 	//-------------------------------------------------
 	//	閉じる
 	//-------------------------------------------------
-	$root[#num]="[Tab]このタブ以外を閉じる";
-	$label[#num]="";
+	$root[#num]="このタブ以外を閉じる";
+	$label[#num]="CloseOtherTab";
 	#num=#num+1;
 	$root[#num]="[Tab]左のタブをすべて閉じる";
-	$label[#num]="";
+	$label[#num]="CloseLeftTabAll";
 	#num=#num+1;
 	$root[#num]="[Tab]右のタブをすべて閉じる";
-	$label[#num]="";
+	$label[#num]="CloseRightTabAll";
 	#num=#num+1;
 
 	$root[#num]="\x01";
@@ -181,6 +181,58 @@ WriteClose:
 	saveexit;
 	return;
 	
+CloseOtherTab:
+	##i = tabtotal - 1;
+	while( 0 <= ##i ) {
+		##handle = gettabhandle( true, 0, ##i );
+		if( ##handle == hidemaruhandle(0) ) {
+			//自分自身
+		} else {
+			if( updated[##handle] ) {
+				//message filename2[##handle] + "更新されています。";
+			}else{
+				closehidemaru ##handle;
+			}
+		}
+		##i = ##i - 1;
+	}
+	return ;
+
+CloseLeftTabAll:
+	##i=0;
+	while(true){
+		##handle = gettabhandle( true, 0, ##i );
+		if( ##handle == hidemaruhandle(0) ) {
+			//自分自身
+			return;
+		} else {
+			if( updated[##handle] ) {
+			  //message filename2[##handle] + "更新されています。";
+			  ##i = ##i + 1;
+			} else {
+			  closehidemaru ##handle;
+			}
+		}
+	}
+	return;
+
+CloseRightTabAll:
+	##i=tabtotal - 1;
+	while(0 <= ##i){
+		##handle = gettabhandle( true, 0, ##i );
+		if( ##handle == hidemaruhandle(0) ) {
+			//自分自身
+			return;
+		} else {
+			if( updated[##handle] ) {
+			  //message filename2[##handle] + "更新されています。";
+			} else {
+			  closehidemaru ##handle;
+			}
+		}
+		##i = ##i - 1;
+	}
+	return ;
 	
 DetachOrMoveTab:
 	settabgroup;

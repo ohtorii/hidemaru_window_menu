@@ -147,6 +147,10 @@ Initialize:
 	$root[#num]="G)Grepを閉じる";
 	$label[#num]="CloseGrep";
 	#num=#num+1;
+	$root[#num]="X)タブグループを閉じる";
+	$label[#num]="CloseTabGroup";
+	#num=#num+1;
+	
 	$root[#num]="Q)このタブを閉じる";
 	$label[#num]="Quit";
 	#num=#num+1;
@@ -181,6 +185,10 @@ Quit:
 CloseGrep:
 	execmacro currentmacrodirectory+"\\CloseGrepWin.mac";
 	return;
+
+CloseTabGroup:
+	execmacro currentmacrodirectory+"\\close_tab_group.mac";
+	return ;
 	
 Write:
 	save;

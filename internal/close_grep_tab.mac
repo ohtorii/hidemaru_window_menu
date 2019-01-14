@@ -1,0 +1,40 @@
+//------ CloseGrepWin.mac ------------------------------------------//
+
+//グレップ結果ウィンドウをまとめて閉じる    Ver1.00
+
+if( version > 313 ) goto UpperVersion;
+
+#handle1 = hidemaruhandle( 0 );
+nexthidemaru;
+while( 1 ) {
+    #grephandle = hidemaruhandle( 0 );
+    if( #handle1 == #grephandle ) break;
+    if( filetype == "grep" ) #grep = 1;
+    else #grep = 0;
+    nexthidemaru;
+    if( #grep ) closehidemaru #grephandle;
+}
+if( filetype == "grep" ) quit;
+endmacro;
+
+UpperVersion:   //秀丸エディタ Ver3.14 以上の場合
+#c = hidemarucount - 1;
+while( #c ) {
+	$t = filetype( #c );
+    if(($t=="grep")||($t=="new")||($t=="exeresult")) {
+		closehidemaru hidemaruhandle( #c );
+	}
+    #c = #c - 1;
+}
+if( filetype == "grep" ) quit;
+//message "閉じ終わりました";
+endmacro;
+
+//  このマクロは連続してグレップしてたくさんのグレップウィンドウが開いた時，
+//  それらをまとめて閉じたいときに使用します。
+//  このマクロを普通に登録して，実行します。
+
+//  2002.1.25   秀ネット秀丸エディタ会議室で提案
+//  2002.1.27   Ver1.00 公開
+//  2011/02/16  ikeuchi. new|exeresultでも閉じるようにした。
+//------------------------------------------------------------------//

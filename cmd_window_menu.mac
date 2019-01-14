@@ -183,11 +183,11 @@ Quit:
 	return;
 
 CloseGrep:
-	execmacro currentmacrodirectory+"\\CloseGrepWin.mac";
+	execmacro currentmacrodirectory+"\\internal\\close_grep_tab.mac";
 	return;
 
 CloseTabGroup:
-	execmacro currentmacrodirectory+"\\close_tab_group.mac";
+	execmacro currentmacrodirectory+"\\internal\\close_tab_group.mac";
 	return ;
 	
 Write:
@@ -199,58 +199,17 @@ WriteClose:
 	return;
 	
 CloseOtherTab:
-	##i = tabtotal - 1;
-	while( 0 <= ##i ) {
-		##handle = gettabhandle( true, 0, ##i );
-		if( ##handle == hidemaruhandle(0) ) {
-			//自分自身
-		} else {
-			if( updated[##handle] ) {
-				//message filename2[##handle] + "更新されています。";
-			}else{
-				closehidemaru ##handle;
-			}
-		}
-		##i = ##i - 1;
-	}
+	execmacro currentmacrodirectory+"\\internal\\close_tab_other.mac";
 	return ;
 
 CloseLeftTabAll:
-	##i=0;
-	while(true){
-		##handle = gettabhandle( true, 0, ##i );
-		if( ##handle == hidemaruhandle(0) ) {
-			//自分自身
-			return;
-		} else {
-			if( updated[##handle] ) {
-			  //message filename2[##handle] + "更新されています。";
-			  ##i = ##i + 1;
-			} else {
-			  closehidemaru ##handle;
-			}
-		}
-	}
-	return;
+	execmacro currentmacrodirectory+"\\internal\\close_tab_left_all.mac";
+	return ;
 
 CloseRightTabAll:
-	##i=tabtotal - 1;
-	while(0 <= ##i){
-		##handle = gettabhandle( true, 0, ##i );
-		if( ##handle == hidemaruhandle(0) ) {
-			//自分自身
-			return;
-		} else {
-			if( updated[##handle] ) {
-			  //message filename2[##handle] + "更新されています。";
-			} else {
-			  closehidemaru ##handle;
-			}
-		}
-		##i = ##i - 1;
-	}
+	execmacro currentmacrodirectory+"\\internal\\close_tab_right_all.mac";
 	return ;
-	
+
 DetachOrMoveTab:
 	settabgroup;
 	return ;
@@ -263,23 +222,23 @@ GroupingProject:
 	return ;
 
 GroupingFolder:
-	execmacro currentmacrodirectory+"\\grouping_tab_folder.mac";
+	execmacro currentmacrodirectory+"\\internal\\grouping_tab_folder.mac";
 	return;
 
 GroupingBasename:
-	execmacro currentmacrodirectory+"\\grouping_tab_basename.mac";
+	execmacro currentmacrodirectory+"\\internal\\grouping_tab_basename.mac";
 	return;
 	
 GroupingExtension:
-	execmacro currentmacrodirectory+"\\grouping_tab_extension.mac";
+	execmacro currentmacrodirectory+"\\internal\\grouping_tab_extension.mac";
 	return;
 	
 MoveTabRight:
-	execmacro currentmacrodirectory+"\\settaborder_right.mac";
+	execmacro currentmacrodirectory+"\\internal\\set_taborder_right.mac";
 	return ;
 
 MoveTabLeft:
-	execmacro currentmacrodirectory+"\\settaborder_left.mac";
+	execmacro currentmacrodirectory+"\\internal\\set_taborder_left.mac";
 	return ;
 
 MoveTabBoth:
@@ -287,11 +246,11 @@ MoveTabBoth:
 	while(1){
 		##in=inputchar("");
 		if ((##in == 0x1C) || (##in==ascii("h"))){
-			execmacro currentmacrodirectory+"\\settaborder_left.mac";
+			execmacro currentmacrodirectory+"\\internal\\set_taborder_left.mac";
 			continue;
 		}
 		if ((##in == 0x1E) || (##in==ascii("l"))){
-			execmacro currentmacrodirectory+"\\settaborder_right.mac";
+			execmacro currentmacrodirectory+"\\internal\\set_taborder_right.mac";
 			continue;
 		}
 		break;
@@ -299,11 +258,11 @@ MoveTabBoth:
 	return;
 
 TabSortFilename:
-	execmacro currentmacrodirectory+"\\cmd_sort_tab_filename.mac";
+	execmacro currentmacrodirectory+"\\internal\\cmd_sort_tab_filename.mac";
 	return;
 	
 TabSortExtension:
-	execmacro currentmacrodirectory+"\\cmd_sort_tab_ext.mac";
+	execmacro currentmacrodirectory+"\\internal\\cmd_sort_tab_ext.mac";
 	return;
 
 ForcusTab:

@@ -1,0 +1,8 @@
+//   ƒ^ƒu‚ð‰E‚ÉˆÚ“®  Ver 0.00   //
+//                              //
+//                              //
+//   by Atsushi      2007/9/7   //
+
+
+#order=(taborder+1)%tabtotal;
+settaborder 0,#order;

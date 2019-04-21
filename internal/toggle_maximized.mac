@@ -1,0 +1,14 @@
+﻿/* 最大化 <--> 元のサイズ
+
+# 連絡先
+https://github.com/ohtorii/everything	<br>
+http://d.hatena.ne.jp/ohtorii/			<br>
+https://twitter.com/ohtorii				<br>
+*/
+if(windowstate==3){
+	//最大化されているので元に戻す
+	showwindow 1;
+}else{
+	//最大化する
+	showwindow 3;
+}

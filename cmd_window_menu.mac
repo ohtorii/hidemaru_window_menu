@@ -132,6 +132,10 @@ Initialize:
 	//-------------------------------------------------
 	//	ウインドウのサイズ変更
 	//-------------------------------------------------
+	$root[#num]="M)最大化／最小化";
+	$label[#num]="ToggleMaximized";
+	#num=#num+1;
+	
 	$root[#num]="Z)全画面表示";
 	$label[#num]="ToggleFullScreen";
 	#num=#num+1;
@@ -391,5 +395,10 @@ SplitSwitch:
 	splitswitch;
 	return;
 
+ToggleMaximized:
+	execmacro currentmacrodirectory+"\\internal\\toggle_maximized.mac";
+	return ;
+	
 ToggleFullScreen:
 	execmacro currentmacrodirectory+"\\internal\\toggle_full_screen.mac";
+	return ;

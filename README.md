@@ -1,7 +1,7 @@
 ﻿# 秀丸エディタのウインドウ捜査を行うマクロ（作成途中）
 
 |説明|マクロファイル名|推奨ショートカットキー|補足|
-|:--:|:--:|:--:|:--:|
+|--|--|--|--|
 |このタブ以外を全て閉じる|close_tab_other.mac|　|　|
 |右のタブを全て閉じる|close_tab_right_all.mac|　|　|
 |左のタブを全て閉じる|close_tab_left_all.mac|　|　|
@@ -22,6 +22,6 @@
 
 
 # 連絡先
-https://github.com/ohtorii/everything	<br>
-http://d.hatena.ne.jp/ohtorii/			<br>
-https://twitter.com/ohtorii				<br>
+- https://github.com/ohtorii/everything
+- http://d.hatena.ne.jp/ohtorii/
+- https://twitter.com/ohtorii

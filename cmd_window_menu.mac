@@ -109,6 +109,9 @@ Initialize:
 	$label[#num]="";
 	#num=#num+1;
 
+	$root[#num]="タブグループ　ソリューションごと\tまとめる";
+	$label[#num]="GroupingSolution";
+	#num=#num+1;
 	$root[#num]="タブグループ　リポジトリごと\tまとめる";
 	$label[#num]="GroupingRepository";
 	#num=#num+1;
@@ -248,6 +251,10 @@ DetachOrMoveTab:
 
 DetachTab:
 	settabgroup;
+	return ;
+
+GroupingSolution:
+	execmacro currentmacrodirectory+"\\internal\\grouping_vs_solution.mac";
 	return ;
 
 GroupingRepository:

@@ -1,0 +1,12 @@
+﻿/*タブをリポジトリごとにまとめるマクロ
+
+# 連絡先
+https://github.com/ohtorii/everything	<br>
+http://d.hatena.ne.jp/ohtorii/			<br>
+https://twitter.com/ohtorii				<br>
+*/
+
+message "未実装";
+endmacro;
+
+execmacro currentmacrodirectory+"\\grouping_tab_internal.mac", "get_solution";

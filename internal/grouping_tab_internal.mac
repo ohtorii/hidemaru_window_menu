@@ -7,6 +7,9 @@ http://d.hatena.ne.jp/ohtorii/			<br>
 https://twitter.com/ohtorii				<br>
 
 */
+if(!tabmode){
+	endmacro;
+}
 
 //一意なフォルダ名
 $g_uniq_folders[0]="";
@@ -39,7 +42,7 @@ main:
 	call collect_folder, $$label_name;
 	call debug_dump_uniq_folder;
 	call grouping;
-	call sort;
+	//call sort;
 	return;
 
 collect_folder:
@@ -110,6 +113,7 @@ grouping:
 	return ;
 
 
+/*タブをタブ名でソートする*/
 sort:
 	debuginfo "==== sort ====";
 	if($g_sort_tab_macro==""){
@@ -156,6 +160,13 @@ debug_dump_uniq_folder:
 
 
 
+get_drive:
+	##objFSO = createobject("Scripting.FileSystemObject");
+	$$strPath = @"C:\Folder\File.txt";
+	$$drive_name=member( ##objFSO, "GetDriveName", filename[##1] );
+	releaseobject ##objFSO;
+	return $$drive_name;
+
 
 get_directory:
 	return directory[##1];
@@ -165,4 +176,7 @@ get_extension:
 
 get_basename:
 	return basename[##1];
-	
+
+get_repository:
+	execmacro currentmacrodirectory+"\\search_repository_folder.mac", filename[##1];
+	return getresultex(-1);

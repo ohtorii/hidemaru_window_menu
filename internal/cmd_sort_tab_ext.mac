@@ -6,7 +6,9 @@ https://github.com/ohtorii/everything	<br>
 http://d.hatena.ne.jp/ohtorii/			<br>
 https://twitter.com/ohtorii				<br>
 */
-
+if(!tabmode){
+	endmacro;
+}
 #mode=2;	//Šg’£Žq
 
 if(#mode ==0 )endmacro;

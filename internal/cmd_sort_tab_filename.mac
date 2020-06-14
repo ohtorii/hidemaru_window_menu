@@ -6,7 +6,9 @@ https://github.com/ohtorii/everything	<br>
 http://d.hatena.ne.jp/ohtorii/			<br>
 https://twitter.com/ohtorii				<br>
 */
-
+if(!tabmode){
+	endmacro;
+}
 #mode=1;	//ƒtƒ@ƒCƒ‹–¼
 
 if(#mode ==0 )endmacro;
@@ -19,7 +21,7 @@ while( #i < #c ) {
   if(#mode==1){
 	call GetFileName basename[#handle];
 	$aName[#i] = $$return;
-	
+
     //$aName[#i] = basename[#handle];
     //$aName[#i] = tolower(filename[#handle]);
   } else {

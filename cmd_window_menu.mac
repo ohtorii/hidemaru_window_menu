@@ -18,7 +18,7 @@ endmacro;
 Initialize:
 	#num=0;
 
-	
+
 	{
 	/*	$root[#num]="New";
 		$label[#num]="New";
@@ -26,7 +26,7 @@ Initialize:
 		$root[#num]="Open";
 		$label[#num]="Open";
 		#num=#num+1;*/
-	
+
 		/*$root[#num]="Write";
 		$label[#num]="Write";
 		#num=#num+1;
@@ -35,146 +35,161 @@ Initialize:
 		#num=#num+1;
 	*/
 	}
-	
-	//-------------------------------------------------
-	//	移動
-	//-------------------------------------------------
-	$root[#num]="I)タブに移動";
-	$label[#num]="ForcusTab";
-	#num=#num+1;
-	$root[#num]="H)左のタブに移動";
-	$label[#num]="MoveLeftTab";
-	#num=#num+1;
-	$root[#num]="L)右のタブに移動";
-	$label[#num]="MoveRightTab";
-	#num=#num+1;
-
-	$root[#num]="\x01";
-	#num=#num+1;
 
 	//-------------------------------------------------
-	//	フォーカス
+	//	分割
 	//-------------------------------------------------
 	/*$root[#num]="S)分割方向の切り替え";
 	$label[#num]="Split";
 	#num=#num+1;*/
-	
+
 	$root[#num]="S)水平分割";
 	$label[#num]="SplitHorizontal";
 	#num=#num+1;
-	
+
 	$root[#num]="V)垂直分割";
 	$label[#num]="SplitVertical";
 	#num=#num+1;
-	
+
 	$root[#num]="W)分割ウインドウ切り替え";
 	$label[#num]="SplitSwitch";
 	#num=#num+1;
-	
+
 	$root[#num]="C)分割ウインドウクローズ";
 	$label[#num]="SplitClose";
 	#num=#num+1;
 
 	$root[#num]="\x01";
 	#num=#num+1;
-	
-	
 
-	//-------------------------------------------------
-	//	分離
-	//-------------------------------------------------
-	$root[#num]="D)このタブを分離/移動";
-	$label[#num]="DetachOrMoveTab";
-	#num=#num+1;
-	$root[#num]="このタブを分離";
-	$label[#num]="DetachTab";
-	#num=#num+1;
-	$root[#num]="//タブをプロジェクトフォルダ毎にまとめる";
-	$label[#num]="GroupingProject";
-	#num=#num+1;
-	$root[#num]="タブをフォルダ毎にまとめる";
-	$label[#num]="GroupingFolder";
-	#num=#num+1;
-	$root[#num]="タブをファイル名毎にまとめる";
-	$label[#num]="GroupingBasename";
-	#num=#num+1;
-	$root[#num]="タブを拡張子毎にまとめる";
-	$label[#num]="GroupingExtension";
-	#num=#num+1;
-
-	$root[#num]="\x01";
-	$label[#num]="";
-	#num=#num+1;
-	
-	//-------------------------------------------------
-	//	並び替え
-	//-------------------------------------------------
-	$root[#num]="O)タブを移動";
-	$label[#num]="MoveTabBoth";
-	#num=#num+1;
-	$root[#num]="K)タブを右に移動";
-	$label[#num]="MoveTabRight";
-	#num=#num+1;
-	$root[#num]="J)タブを左に移動";
-	$label[#num]="MoveTabLeft";
-	#num=#num+1;
-	$root[#num]="F)タブをファイル名で並び替える";
-	$label[#num]="TabSortFilename";
-	#num=#num+1;
-	$root[#num]="E)タブをファイル拡張子で並び替える";
-	$label[#num]="TabSortExtension";
-	#num=#num+1;
-	
-	$root[#num]="\x01";
-	$label[#num]="";
-	#num=#num+1;
-	
 	//-------------------------------------------------
 	//	ウインドウのサイズ変更
 	//-------------------------------------------------
 	$root[#num]="M)最大化／最小化";
 	$label[#num]="ToggleMaximized";
 	#num=#num+1;
-	
+
 	$root[#num]="Z)全画面表示";
 	$label[#num]="ToggleFullScreen";
 	#num=#num+1;
-	
+
 	$root[#num]="\x01";
 	$label[#num]="";
 	#num=#num+1;
-	
+
+
+	//-------------------------------------------------
+	//	フォーカス
+	//-------------------------------------------------
+	$root[#num]="I)タブのフォーカス\t自由";
+	$label[#num]="ForcusTab";
+	#num=#num+1;
+	$root[#num]="H)タブのフォーカス\t左へ";
+	$label[#num]="MoveLeftTab";
+	#num=#num+1;
+	$root[#num]="L)タブのフォーカス\t右へ";
+	$label[#num]="MoveRightTab";
+	#num=#num+1;
+
+	$root[#num]="\x01";
+	#num=#num+1;
+
+
+	//-------------------------------------------------
+	//	分離
+	//-------------------------------------------------
+	$root[#num]="D)このタブ\t分離/移動";
+	$label[#num]="DetachOrMoveTab";
+	#num=#num+1;
+	$root[#num]="このタブ\t分離";
+	$label[#num]="DetachTab";
+	#num=#num+1;
+
+	$root[#num]="\x01";
+	$label[#num]="";
+	#num=#num+1;
+
+	$root[#num]="タブグループ　リポジトリごと\tまとめる";
+	$label[#num]="GroupingRepository";
+	#num=#num+1;
+	$root[#num]="タブグループ　ドライブごと\tまとめる";
+	$label[#num]="GroupingDrive";
+	#num=#num+1;
+	$root[#num]="タブグループ　フォルダごと\tまとめる";
+	$label[#num]="GroupingFolder";
+	#num=#num+1;
+	$root[#num]="タブグループ　ファイル名ごと\tまとめる";
+	$label[#num]="GroupingBasename";
+	#num=#num+1;
+	$root[#num]="タブグループ　拡張子ごと\tまとめる";
+	$label[#num]="GroupingExtension";
+	#num=#num+1;
+
+	$root[#num]="\x01";
+	$label[#num]="";
+	#num=#num+1;
+
+	//-------------------------------------------------
+	//	並び替え
+	//-------------------------------------------------
+	$root[#num]="O)このタブ\t自由";
+	$label[#num]="MoveTabBoth";
+	#num=#num+1;
+	$root[#num]="K)このタブ\t右移動";
+	$label[#num]="MoveTabRight";
+	#num=#num+1;
+	$root[#num]="J)このタブ\t左移動";
+	$label[#num]="MoveTabLeft";
+	#num=#num+1;
+
+	$root[#num]="\x01";
+	$label[#num]="";
+	#num=#num+1;
+
+	$root[#num]="F)タブグループ　ファイル名\tソート";
+	$label[#num]="TabSortFilename";
+	#num=#num+1;
+	$root[#num]="E)タブグループ　ファイル拡張子\tソート";
+	$label[#num]="TabSortExtension";
+	#num=#num+1;
+
+	$root[#num]="\x01";
+	$label[#num]="";
+	#num=#num+1;
+
 	//-------------------------------------------------
 	//	閉じる
 	//-------------------------------------------------
-	$root[#num]="このタブ以外を閉じる";
+	$root[#num]="他のタブ\tすべて閉じる";
 	$label[#num]="CloseOtherTab";
 	#num=#num+1;
-	$root[#num]="左のタブをすべて閉じる";
+	$root[#num]="左側のタブ\tすべて閉じる";
 	$label[#num]="CloseLeftTabAll";
 	#num=#num+1;
-	$root[#num]="右のタブをすべて閉じる";
+	$root[#num]="右側のタブ\tすべて閉じる";
 	$label[#num]="CloseRightTabAll";
 	#num=#num+1;
 
 	$root[#num]="\x01";
 	$label[#num]="";
 	#num=#num+1;
-	
-	$root[#num]="G)Grepを閉じる";
-	$label[#num]="CloseGrep";
-	#num=#num+1;
-	$root[#num]="X)タブグループを閉じる";
-	$label[#num]="CloseTabGroup";
-	#num=#num+1;
-	
-	$root[#num]="Q)このタブを閉じる";
+
+	$root[#num]="Q)タブ\t閉じる";
 	$label[#num]="Quit";
 	#num=#num+1;
-	
+
+	$root[#num]="G)Grep\t閉じる";
+	$label[#num]="CloseGrep";
+	#num=#num+1;
+
+	$root[#num]="X)タブグループ\t閉じる";
+	$label[#num]="CloseTabGroup";
+	#num=#num+1;
+
 	return ;
 
 Main:
+	setmenudelay 500;
 	menuarray $root,#num;
 	if(result==0){
 		return;
@@ -206,15 +221,15 @@ CloseGrep:
 CloseTabGroup:
 	execmacro currentmacrodirectory+"\\internal\\close_tab_group.mac";
 	return ;
-	
+
 Write:
 	save;
-	return;	
+	return;
 
 WriteClose:
 	saveexit;
 	return;
-	
+
 CloseOtherTab:
 	execmacro currentmacrodirectory+"\\internal\\close_tab_other.mac";
 	return ;
@@ -235,8 +250,13 @@ DetachTab:
 	settabgroup;
 	return ;
 
-GroupingProject:
+GroupingRepository:
+	execmacro currentmacrodirectory+"\\internal\\grouping_tab_repository.mac";
 	return ;
+
+GroupingDrive:
+	execmacro currentmacrodirectory+"\\internal\\grouping_tab_drive.mac";
+	return;
 
 GroupingFolder:
 	execmacro currentmacrodirectory+"\\internal\\grouping_tab_folder.mac";
@@ -245,11 +265,11 @@ GroupingFolder:
 GroupingBasename:
 	execmacro currentmacrodirectory+"\\internal\\grouping_tab_basename.mac";
 	return;
-	
+
 GroupingExtension:
 	execmacro currentmacrodirectory+"\\internal\\grouping_tab_extension.mac";
 	return;
-	
+
 MoveTabRight:
 	execmacro currentmacrodirectory+"\\internal\\set_taborder_right.mac";
 	return ;
@@ -277,7 +297,7 @@ MoveTabBoth:
 TabSortFilename:
 	execmacro currentmacrodirectory+"\\internal\\cmd_sort_tab_filename.mac";
 	return;
-	
+
 TabSortExtension:
 	execmacro currentmacrodirectory+"\\internal\\cmd_sort_tab_ext.mac";
 	return;
@@ -297,11 +317,11 @@ ForcusTab:
 		break;
 	}
 	return;
-	
+
 MoveRightTab:
 	nexttab;
 	return;
-	
+
 MoveLeftTab:
 	prevtab
 	return;
@@ -326,7 +346,7 @@ Split:
 		break;
 	}
 	return;
-	
+
 SplitHorizontal:
 	split 1,1;
 	return;
@@ -342,7 +362,7 @@ SplitClose:
 	}
 	split 0,0;
 	return;
-	
+
 SwitchWindowSplit:
 	if(splitmode==0){
 		//分割無し→上下分割
@@ -389,8 +409,8 @@ SwitchWindowSplitReverse:
 		return;
 	}
 	return;
-	
-	
+
+
 SplitSwitch:
 	splitswitch;
 	return;
@@ -398,7 +418,7 @@ SplitSwitch:
 ToggleMaximized:
 	execmacro currentmacrodirectory+"\\internal\\toggle_maximized.mac";
 	return ;
-	
+
 ToggleFullScreen:
 	execmacro currentmacrodirectory+"\\internal\\toggle_full_screen.mac";
 	return ;

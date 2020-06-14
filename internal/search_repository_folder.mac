@@ -1,0 +1,125 @@
+﻿/*リポジトリフォルダを探す
+
+（利用例）
+execmacro "search_project_folder.mac", "c:\\my_project\\src\system\\heap";
+
+（マクロの返値）
+プロジェクトルートのフォルダを見つけるとその文字列を返します、
+見つからない場合は空文字を返します。
+
+（補足）
+もし、この「プロジェクトフォルダを探す」マクロが気に入ったら、
+ご自分のマクロに組み込んで利用して頂いて構いません。
+その時は、マクロのファイル名が衝突しないようにファイル名を変更する
+など気をつけてください。
+
+
+（ライセンス）
+MIT License
+
+Copyright (c) 2018 ohtorii
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
+$g_markers[0] = "";
+#g_markers_len=0;
+
+$g_ini_config_filename=currentmacrofilename+".config.ini";
+
+
+debuginfo 0;
+call main;
+endmacro $$return;
+
+
+main:
+	$$current_folder=getarg(0);
+	debuginfo "main:$$current_folder="+$$current_folder;
+
+	if(! existfile($g_ini_config_filename)){
+		message "iniファイルが見つからない\n"+$g_ini_config_filename;
+		return false;
+	}
+	call start $$current_folder;
+	return $$return;
+
+
+start:
+	$$current_folder=$$1;
+	call load_ini;
+	if(! ##return){
+		return "";
+	}
+	call findroot $$current_folder;
+	$$project_folder=$$return;
+
+	debuginfo "project_folder=" + $$project_folder;
+	return $$project_folder;
+
+
+findroot:
+	$$current_folder=$$1;
+	debuginfo "findroot:$$current_folder="+$$current_folder;
+
+	##i=0;
+	while(##i < #g_markers_len){
+		$$sub_folder=$$current_folder+"\\"+$g_markers[##i];
+		if(existfile($$sub_folder,1) & 0x00000010){
+			return $$current_folder;
+		}
+		##i = ##i + 1;
+	}
+	if(strlen($$current_folder) <= 3){
+		//"c:\" のパターン
+		return "";
+	}
+
+	call getparent $$current_folder;
+	$$parent=$$return;
+	call findroot $$parent;
+	return $$return;
+
+
+getparent:
+	##index_en	 =wcsstrrstr($$1,"\\");
+	##index_slash=wcsstrrstr($$1,"/");
+	if(##index_slash < ##index_en){
+		return wcsleftstr($$1,##index_en);
+	}
+	if(##index_slash <= 0){
+		return "";
+	}
+	return wcsleftstr($$1,##index_slash);
+
+
+load_ini:
+	##i=0;
+	while(##i<100){
+		$$item = getinistr($g_ini_config_filename,"project_folder","_"+str(##i));
+		debuginfo "$$item="+$$item;
+		if($$item==""){
+			return true;
+		}
+		$g_markers[##i]=$$item;
+		#g_markers_len = #g_markers_len + 1;
+
+		##i = ##i + 1;
+	}
+	return false;

@@ -3,6 +3,7 @@
 //                              //
 //   by Atsushi      2007/9/7   //
 
-
-#order=(taborder+1)%tabtotal;
-settaborder 0,#order;
+if(tabmode){
+	#order=(taborder+1)%tabtotal;
+	settaborder 0,#order;
+}

@@ -6,6 +6,9 @@ https://github.com/ohtorii/everything	<br>
 http://d.hatena.ne.jp/ohtorii/			<br>
 https://twitter.com/ohtorii				<br>
 */
+if(!tabmode){
+	endmacro;
+}
 call main;
 endmacro;
 

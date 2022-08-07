@@ -160,6 +160,17 @@ Initialize:
 	$label[#num]="";
 	#num=#num+1;
 
+    //-------------------------------------------------
+	//	切り替え
+	//-------------------------------------------------
+	$root[#num]=".)ソース/ヘッダ切り替え";
+	$label[#num]="SwitchFile";
+	#num=#num+1;
+
+    $root[#num]="\x01";
+	$label[#num]="";
+	#num=#num+1;
+
 	//-------------------------------------------------
 	//	閉じる
 	//-------------------------------------------------
@@ -308,6 +319,10 @@ TabSortFilename:
 TabSortExtension:
 	execmacro currentmacrodirectory+"\\internal\\cmd_sort_tab_ext.mac";
 	return;
+
+SwitchFile:
+    execmacro macrodir+@"\scripts\switch_source_header.mac";
+    return ;
 
 ForcusTab:
 	title "[Mode]タブの移動(Left/Right/H/L)";
